@@ -23,7 +23,7 @@ var routes = function(app) {
         });
     });
     app.delete("/book/:isbn", function(req, res) {
-        Book.findOneAndRemove(req.query, function(err, result) {
+        Book.findOneAndRemove({isbn: String(req.query.isbn)}, function(err, result) {
             if ( err ) throw err;
             res.json( {
                 message: "Successfully deleted the book",
